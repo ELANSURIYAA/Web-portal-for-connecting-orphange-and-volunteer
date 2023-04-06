@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form by Colorlib</title>
+
+    <!-- Font Icon -->
+    
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="vendor/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="C:\Users\elansuriyaa\Desktop\WPOV\colorlib-regform-14\style.css">
+    
+
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded',function(){
+            const firebaseConfig = {
+  apiKey: "AIzaSyCz5-VafNCTpee8Zhr3ANJEHzuuByMpRI4",
+  authDomain: "orph-eb929.firebaseapp.com",
+  databaseURL: "https://orph-eb929-default-rtdb.firebaseio.com",
+  projectId: "orph-eb929",
+  storageBucket: "orph-eb929.appspot.com",
+  messagingSenderId: "371130861883",
+  appId: "1:371130861883:web:2f0638b107d21ccab04f1e"
+};
+            firebase.initializeApp(firebaseConfig);
+            var messagesRef=firebase.database()
+                .ref('Collected Data');
+            
+            document.getElementById('signup-form').addEventListener('submit',submitForm);
+
+            function submitForm(e){
+                e.preventDefault();
+                var orp_name=document.getElementById('orp_name').value;
+                var man_name=document.getElementById('man_name').value;
+                var birth_date=document.getElementById('birth_date').value;
+                var phone=document.getElementById('phone_number').value;
+                var man_phone=document.getElementById('man_phone_number').value;
+                var pword=document.getElementById('u_password').value;
+                var email=document.getElementById('email').value;
+                var moh=document.getElementById('moh').value;
+                var aadhar=document.getElementById('aadhar').value;
+                var address=document.getElementById('address').value;
+                saveMessage(orp_name,man_name,birth_date,phone,man_phone,pword,email,moh,aadhar,address);
+                document.getElementById('signup-form').reset();
+
+                }
+                function saveMessage(orp_name,man_name,birth_date,phone,man_phone,pword,email,moh,aadhar,address){
+                    var newMessageRef=messagesRef.push();
+                    newMessageRef.set({
+                        orp_name:orp_name,
+                        man_name:man_name,
+                        birth_date:birth_date,
+                        phone:phone,
+                        man_phone:man_phone,
+                        pword:pword,
+                        email:email,
+                        moh:moh,
+                        aadhar:aadhar,
+                        address:address
+                    });
+
+
+            }
+
+        });
+    </script>
+    
+    
+</head>
+<body>
+
+    <div class="main">
+
+        <section class="signup">
+            <center>
+            <h1>ORPHANAGE SIGNUP</h1>
+            </center>
+            <!-- <img src="images/signup-bg.jpg" alt=""> -->
+            <div class="container">
+                <div class="signup-content">
+                    <form id="signup-form" class="signup-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first_name">Orphanage Name:</label>
+                                <input type="text" class="form-input" name="first_name" id="orp_name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Manager name</label>
+                                <input type="text" class="form-input" name="last_name" id="man_name" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group form-icon">
+                                <label for="birth_date">Organisation date</label>
+                                <input type="text" class="form-input" name="birth_date" id="birth_date" placeholder="MM-DD-YYYY" />
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone_number">Organisation Phone number</label>
+                            <input type="number" class="form-input" name="phone_number" id="phone_number" />
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Managers Phone number</label>
+                            <input type="number" class="form-input" name="man_phone_number" id="man_phone_number"> 
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-input" name="password" id="u_password"/>
+                            </div>
+                          
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-input" name="email" id="email"/>
+                        </div>
+                       <div class="form-group">
+                            <label for="moh">Need for help(All/Cash/Food/Transport/Manpower)</label>
+                            <input type="text" class="form-input" id="moh">
+                       </div>
+                        <div class="form-group">
+                            <label for="aadhar">Aadhar Number</label>
+                            <input type="text" class="form-input" id="aadhar">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" class="form-input" id="address">
+                        </div>
+                        <div class="form-group">
+                            <button id="submit" type="button" class="btn btn-primary">SUBMIT</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/jquery-ui/jquery-ui.min.js"></script>
+    <script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="js/main.js"></script> -->
+   
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>

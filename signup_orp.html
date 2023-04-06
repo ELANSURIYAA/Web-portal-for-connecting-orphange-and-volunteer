@@ -1,0 +1,112 @@
+<html>
+<head>
+	<title>SIGNUP ORPHANAGE</title>
+	<link rel="stylesheet" href="./surv.css" type="text/css">
+	<script src=
+	"https://www.gstatic.com/firebasejs/3.7.4/firebase.js">
+		</script>
+	<script>	
+	document.addEventListener('DOMContentLoaded',function(){	
+		const firebaseConfig = {
+ 			apiKey: "AIzaSyCz5-VafNCTpee8Zhr3ANJEHzuuByMpRI4",
+  			authDomain: "orph-eb929.firebaseapp.com",
+  			databaseURL: "https://orph-eb929-default-rtdb.firebaseio.com",
+  			projectId: "orph-eb929",
+  			storageBucket: "orph-eb929.appspot.com",
+  			messagingSenderId: "371130861883",
+  			appId: "1:371130861883:web:2f0638b107d21ccab04f1e"
+			};
+		firebase.initializeApp(firebaseConfig);
+		var messagesRef = firebase.database()
+			.ref('Collected Data');
+		document.getElementById('contactform').addEventListener('submit',submitForm);
+		function submitForm(e){
+			e.preventDefault();
+			var name=document.getElementById('name').value;
+            var orp_name=document.getElementById('orp_name').value;
+			var email=document.getElementById('email').value;
+			var age=document.getElementById('age').value;
+            var phone=document.getElementById('phone').value;
+			var org_phone=document.getElementById('org_phone').value;
+			var moh=document.getElementById('moh').value;
+            var address=document.getElementById('address').value;
+			
+			saveMessage(name,orp_name,email,age,phone,org_phone,moh,address);
+			document.getElementById('contactform').reset();
+		}
+		function saveMessage(name,orp_name,email,age,phone,org_phone,moh,address){
+			var newMessageRef=messagesRef.push();
+			newMessageRef.set({
+				name:name,
+                orp_name:orp_name,
+				email:email,
+				age:age,
+				phone:phone,
+				org_phone:org_phone,
+                moh:moh,
+                address:address
+			});
+		}
+
+	});
+		
+	</script>
+</head>
+<body>
+	<form id="contactform">
+	<div class="title">
+		<center>
+			<p>Orphanage Signup</p>
+			<p class="sub-quote">Its not how much we give,but how much love we put into giving</p>
+		</center>
+	</div>
+	<div class="form-section">
+		<div class="form-content">
+			<br><br>
+			<label>Name</label>
+			<br>
+			<input type="text" id="name" name="name" placeholder="  Enter your name" class="textbx-name" >
+			<br>
+            <label>Orphanage Name</label>
+			<br>
+			<input type="text" id="orp_name" name="name" placeholder="  Enter your orphanage name" class="textbx-name" >
+			<br>
+			<label>Email</label>
+			<br>
+			<input type="text"  id="email" name="email" placeholder="  Enter your Email" class="textbx-email">
+			<br>
+			<label>Age</label>
+			<br>
+			<input type="number" id="age" name="age" placeholder="  Age" min="10" step="1" class="textbx-number">
+			<br>
+            <br>
+			<label>Phone Number</label>
+			<br>
+			<input type="number" id="phone" name="age" placeholder="Phone number" min="10" step="1" class="textbx-number">
+			<br>
+			<br>
+			<label>Organisation Phone Number</label>
+			<br>
+			<input type="number" id="org_phone" name="age" placeholder="Orphanage phone number" min="10" step="1" class="textbx-number">
+			<br>
+		
+  			<label>Mode of help</label><br>
+  			<select name="feature" id="moh" class="textbx-fav">
+  				<option value="none" disabled selected>  Select an option</option>
+  				<option value="All">All</option>
+  				<option value="cash">Cash</option>
+  				<option value="Transport">Transport</option>
+  				<option value="food">Food</option>
+                <option value="mp">Man Power</option>
+  			</select>
+  			<br>
+  			<label>Address</label><br>
+  			<textarea id="address" name="cmnts" rows="8" cols="86" placeholder="  Enter your address here..." class="text-area"></textarea><br>
+  			<br>
+  			<button class="buttonbx" id="submit">Submit</button>
+		</div>
+	</div>
+	</form>
+
+</body>
+</html>
